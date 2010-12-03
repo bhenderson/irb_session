@@ -39,13 +39,17 @@ module IRB
     # inject WorkSpace into args of Irb.new because the lib doesn't allow us to
     # pass one and I'm not sure why if Irb.new takes one??
 
-    def initialize *args
+    def initialize_without_session *args
       workspace = args.shift
       # only override if someone isn't actually passing a WorkSpace object to
       # Irb.new
       workspace ||= WorkSpace.new(IRB.get_binding)
       args.unshift workspace
-      org_initialize *args
+      initialize_with_session( *args )
     end
+
+    alias_method :initialize_with_session, :initialize
+    alias_method :initialize, :initialize_without_session
+
   end
 end
