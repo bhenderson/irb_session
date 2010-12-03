@@ -10,10 +10,8 @@ require "irb"
 # expected.
 
 module IRB
-  # originally used the code snippet from the above link, which turned out to
-  # be a snippet from `ruby-debug'. However, I was having problems with CNTR-C
-  # and I realized I wanted to mimic irb, just be able to actually pass Irb.new
-  # a workspace param which it expected.
+
+  @@hack_binding = nil
 
   ##
   # === Examples
