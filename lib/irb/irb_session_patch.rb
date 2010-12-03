@@ -1,7 +1,13 @@
 # thank you!
-# http://jameskilton.com/2009/04/02/embedding-irb-into-your-ruby-application/
 
 require "irb"
+
+# I originally used the code snippet from
+# {here}[http://jameskilton.com/2009/04/02/embedding-irb-into-your-ruby-application/],
+# which turned out to be a snippet from `ruby-debug'. However, I was having
+# problems with CNTR-C and I realized I didn't need to copy the code, I just
+# needed to be able to actually pass Irb.new a workspace param which it
+# expected.
 
 module IRB
   # originally used the code snippet from the above link, which turned out to
@@ -12,7 +18,7 @@ module IRB
   ##
   # === Examples
   #
-  # IRB.start_session(ap_path, binding)
+  #   IRB.start_session(ap_path, binding)
 
   def self.start_session(ap_path = nil, binding = nil)
     @@hack_binding = binding
@@ -24,8 +30,10 @@ module IRB
       @@hack_binding
     end
 
+  ##
+  # Open up the class in inject a WorkSpace into the initialize method
+
   class Irb
-    alias_method :org_initialize, :initialize
 
     ##
     # === Description
