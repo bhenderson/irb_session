@@ -1,0 +1,8 @@
+.autotest
+History.txt
+Manifest.txt
+README.txt
+Rakefile
+lib/irb_session.rb
+lib/irb/irb_session_patch.rb
+test/test_irb_session.rb
